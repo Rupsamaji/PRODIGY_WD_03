@@ -5,6 +5,18 @@ body {
     color: white;
 }
 
+h1 {
+    margin-top: 20px;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 20px;
+    margin: 15px 0;
+}
+
 .board {
     width: 300px;
     margin: 20px auto;
@@ -24,8 +36,13 @@ body {
     cursor: pointer;
 }
 
+.cell:hover {
+    background: #666;
+}
+
 button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    margin-top: 10px;
 }

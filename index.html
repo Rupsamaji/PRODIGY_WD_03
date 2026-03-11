@@ -8,7 +8,12 @@
 
     <h1>Tic Tac Toe</h1>
 
-    <div class="board" id="board">
+    <div class="scoreboard">
+        <p>Player X: <span id="scoreX">0</span></p>
+        <p>Player O: <span id="scoreO">0</span></p>
+    </div>
+
+    <div class="board">
         <div class="cell" onclick="play(this)"></div>
         <div class="cell" onclick="play(this)"></div>
         <div class="cell" onclick="play(this)"></div>
@@ -21,7 +26,7 @@
     </div>
 
     <h2 id="status"></h2>
-    <button onclick="resetGame()">Reset</button>
+    <button onclick="resetGame()">Reset Board</button>
 
 <script src="script.js"></script>
 </body>
