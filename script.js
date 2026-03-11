@@ -8,7 +8,9 @@ function play(cell) {
     if (cell.innerText !== "" || !gameActive) return;
 
     cell.innerText = currentPlayer;
-    checkWinner();
+
+    if (checkWinner()) return;
+
     currentPlayer = currentPlayer === "X" ? "O" : "X";
 }
 
@@ -24,34 +26,41 @@ function checkWinner() {
     for (let combo of combinations) {
         let [a,b,c] = combo;
 
-        if (cells[a].innerText &&
+        if (
+            cells[a].innerText !== "" &&
             cells[a].innerText === cells[b].innerText &&
-            cells[a].innerText === cells[c].innerText) {
-
+            cells[a].innerText === cells[c].innerText
+        ) {
             let winner = cells[a].innerText;
 
             document.getElementById("status").innerText =
                 "Player " + winner + " Wins!";
 
             if (winner === "X") {
-                scoreX++;
+                scoreX = scoreX + 1;
                 document.getElementById("scoreX").innerText = scoreX;
             } else {
-                scoreO++;
+                scoreO = scoreO + 1;
                 document.getElementById("scoreO").innerText = scoreO;
             }
 
             gameActive = false;
-            return;
+            return true;
         }
     }
 
-    // Draw detection
-    let filled = [...cells].every(cell => cell.innerText !== "");
-    if (filled && gameActive) {
+    let filled = true;
+    cells.forEach(cell => {
+        if (cell.innerText === "") filled = false;
+    });
+
+    if (filled) {
         document.getElementById("status").innerText = "It's a Draw!";
         gameActive = false;
+        return true;
     }
+
+    return false;
 }
 
 function resetGame() {
